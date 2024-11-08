@@ -1,3 +1,3 @@
 TOKEN = '7358246458:AAHWDP-YX4y9RF6MDXcnGy60ccJS_WZOSmM'
 
-HOST = 'http://4.155.15.30:8000'
+HOST = 'http://localhost:8000'

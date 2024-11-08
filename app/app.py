@@ -5,8 +5,11 @@ async def make_request(method: Literal['GET', 'POST', 'PUT', 'DELETE'],
                         url: str,
                         data: dict = {},
                         json: dict = {},
+                        token: str = ''
                         ) -> dict | Literal[False]:
     async with aiohttp.ClientSession() as session:
+        if token:
+            session.headers['Authorization'] = 'Bearer ' + token
         if method == 'GET':
             response = await session.get(url=url)
         elif method == 'POST':
@@ -18,5 +21,6 @@ async def make_request(method: Literal['GET', 'POST', 'PUT', 'DELETE'],
 
         if response.status in (200, 422):
             return await response.json()
-        else:
+        else:       
+            print(bytes.decode(await response.content.read()))
             return False

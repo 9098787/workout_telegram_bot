@@ -5,7 +5,7 @@ async def create() -> None:
     cursor = await connection.cursor()
     await cursor.execute(
 '''CREATE TABLE IF NOT EXISTS users (
-id INTEGER PRIMARY KEY,
+user_id INTEGER PRIMARY KEY,
 auth_token TEXT
 )
 ''')

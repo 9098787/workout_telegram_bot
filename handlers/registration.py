@@ -3,7 +3,9 @@ from aiogram.types import CallbackQuery, Message
 from aiogram.fsm.context import FSMContext
 
 from states.registration import Registration
-from app.users import users
+from app.users import users, auth
+from database.database import create_user
+from keyboards.keyboards import main_builder
 
 router = Router()
 
@@ -45,7 +47,17 @@ async def registration_enter_password(message: Message, state: FSMContext):
     registration_response = await users.registration(data)
     if registration_response:
         if 'response' in registration_response:
-            await message.answer('<b>Вы успешно зарегистрировались!</b>', parse_mode='html')
+            auth_response = await auth.auth(data['email'], data['password'])
+            if auth_response:
+                if 'access_token' in auth_response:
+                    await create_user(message.from_user.id, auth_response['access_token'])
+                    await message.answer('<b>Вы успешно зарегистрировались!</b>', 
+                                         reply_markup=(await main_builder()).as_markup(resize_keyboard=True))
+                else:
+                    await message.answer(f"<b>Произошла ошибка!\nДетали:</b>\n<code>{registration_response}</code>",
+                                 parse_mode='html')
+            else:
+                await message.answer('<b>Произошла непредвиденная ошибка!\nОбратитесь к администратору</b>', parse_mode='html')
         else:
             await message.answer(f"<b>Произошла ошибка!\nДетали:</b>\n<code>{registration_response}</code>",
                                  parse_mode='html')
