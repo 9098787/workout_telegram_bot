@@ -19,7 +19,7 @@ async def make_request(method: Literal['GET', 'POST', 'PUT', 'DELETE'],
         elif method == 'PUT':
             response = await session.put(url=url, data=data) if data else await session.put(url=url, json=json)
 
-        if response.status in (200, 422):
+        if response.status in (200, 422, 201):
             return await response.json()
         else:       
             print(bytes.decode(await response.content.read()))

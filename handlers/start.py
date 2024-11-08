@@ -1,5 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message
+from aiogram.fsm.context import FSMContext
 
 from keyboards.keyboards import registration_builder, main_builder
 from database.database import get_users
@@ -7,7 +8,8 @@ from database.database import get_users
 router = Router()
 
 @router.message(F.text == '/start')
-async def start(message: Message):
+async def start(message: Message, state: FSMContext):
+    await state.clear()
     if message.from_user.id not in (await get_users()):
         await message.answer('<b>Добро пожаловать!\nДля использования бота необходимо пройти регистрацию</b>',
                             reply_markup=(await registration_builder()).as_markup(),
