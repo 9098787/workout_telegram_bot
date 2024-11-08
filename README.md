@@ -14,7 +14,8 @@
  * Запущенный [Workouts API](https://github.com/sergey936/workouts) на `localhost` или любом другом хосте (отредактировать хост для бота можно в config.py)
 
 ## Установка
-   ```git clone https://github.com/9098787/workout_telegram_bot
+   ```
+   git clone https://github.com/9098787/workout_telegram_bot
    cd workout_telegram_bot
    pip install -r requirements.txt
    ```
