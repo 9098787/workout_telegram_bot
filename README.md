@@ -1,8 +1,7 @@
 # Workout Telegram Bot
  
 ## Основная информация
-**Workout Telegram Bot** - телеграм-бот для создания и отслеживания ваших тренировок, работающий на [стороннем API](https://github.com/sergey936/workouts) 
-Версия Python, используемая в проекте - 3.11.7
+**Workout Telegram Bot** - телеграм-бот для создания и отслеживания ваших тренировок, работающий на [стороннем API](https://github.com/sergey936/workouts). Версия Python, используемая в проекте - 3.11.7
 
 ## Запуск проекта
 1. Скачайте и установите [Python 3.11.7](https://www.python.org/downloads/release/python-3117/)
