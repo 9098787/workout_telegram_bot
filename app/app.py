@@ -15,7 +15,7 @@ async def make_request(method: Literal['GET', 'POST', 'PUT', 'DELETE'],
         elif method == 'POST':
             response = await session.post(url=url, data=data) if data else await session.post(url=url, json=json)
         elif method == 'DELETE':
-            response = await session.delete(url=url)
+            response = await session.delete(url=url, json=json)
         elif method == 'PUT':
             response = await session.put(url=url, data=data) if data else await session.put(url=url, json=json)
 

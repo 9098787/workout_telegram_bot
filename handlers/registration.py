@@ -51,8 +51,10 @@ async def registration_enter_password(message: Message, state: FSMContext):
             if auth_response:
                 if 'access_token' in auth_response:
                     await create_user(message.from_user.id, auth_response['access_token'])
+                    await users.become_trainer(auth_response['access_token'])
                     await message.answer('<b>Вы успешно зарегистрировались!</b>', 
-                                         reply_markup=(await main_builder()).as_markup(resize_keyboard=True))
+                                         reply_markup=(await main_builder()).as_markup(resize_keyboard=True),
+                                         parse_mode='html')
                 else:
                     await message.answer(f"<b>Произошла ошибка!\nДетали:</b>\n<code>{registration_response}</code>",
                                  parse_mode='html')

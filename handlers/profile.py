@@ -9,4 +9,4 @@ router = Router()
 @router.message(F.text == '👤Профиль')
 async def profile(message: Message):
     profile = await users.me(await get_token(message.from_user.id))
-    await message.answer(f"<b>👤Профиль:\n\n🪪ФИО: <code>{profile['surname']} {profile['name']} {profile['patronymic']}</code>\n📬Email: {profile['email']}</b>", parse_mode='html')
+    await message.answer(f"<b>👤Профиль:\n\n🪪ФИО: <code>{profile['surname']} {profile['name']} {profile['patronymic']}</code>\n📬Email: <code>{profile['email']}</code></b>", parse_mode='html')

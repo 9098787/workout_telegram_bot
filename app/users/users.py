@@ -8,3 +8,6 @@ async def registration(json: dict) -> dict | Literal[False]:
 
 async def me(token: str) -> dict | Literal[False]:
     return (await make_request('GET', endpoints['users'], token=token))
+
+async def become_trainer(token: str) -> dict | Literal[False]:
+    return (await make_request('PUT', endpoints['trainer'], token=token))

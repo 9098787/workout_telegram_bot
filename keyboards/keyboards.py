@@ -14,3 +14,8 @@ async def main_builder() -> ReplyKeyboardBuilder:
     builder.add(KeyboardButton(text='💬Помощь'))
     builder.adjust(1, 2, 1)
     return builder
+
+async def delete_workout_builder(workout_id: str) -> InlineKeyboardBuilder:
+    builder = InlineKeyboardBuilder()
+    builder.add(InlineKeyboardButton(text='🗑Удалить', callback_data=f'delete|{workout_id}'))
+    return builder
